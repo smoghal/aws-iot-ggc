@@ -1,0 +1,14 @@
+!.gitkeep
+node_modules
+tmp
+.DS_Store
+.idea
+package-lock.json
+docs
+examples
+cert
+dist
+*test*js
+*gz
+*local.md
+syno-mqtt*

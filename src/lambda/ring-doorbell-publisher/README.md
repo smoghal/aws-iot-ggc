@@ -1,0 +1,1 @@
+https://github.com/aws/aws-iot-device-sdk-js/blob/master/README.md
