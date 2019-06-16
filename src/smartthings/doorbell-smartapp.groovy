@@ -1,3 +1,10 @@
+/**
+ * Documentation referneces:
+ * https://docs.smartthings.com/en/latest/smartapp-developers-guide/preferences-and-settings.html
+ * https://docs.smartthings.com/en/latest/tools-and-ide/logging.html
+ * https://docs.smartthings.com/en/latest/smartapp-developers-guide/time-methods.html?highlight=current%20date
+ * https://docs.smartthings.com/en/latest/ref-docs/smartapp-ref.html#smartapp-http-post
+ */
 definition(
   name: "Invoke Webhook When There's Motion",
   namespace: "smoghal",
