@@ -42,7 +42,7 @@ def motionActiveHandler(evt) {
   log.debug "Found ${recentEvents?.size() ?: 0} events in the last $deltaSeconds seconds"
   def alreadyInvokedWebhook = recentEvents.count { it.value && it.value == "active" } > 1
 
-  if (alreadySentSms) {
+  if (alreadyInvokedWebhook) {
     log.trace "Already invoked Webhook within the last $deltaSeconds seconds"
   } else {
     log.trace "$motion1 has moved, invoking webhook"
