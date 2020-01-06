@@ -95,9 +95,9 @@ thingShadows.on('timeout',
 
 // ------------------------------------------------------------------
 // Synology MQTT setup
-const mqttHost = 'host';
-const mqttUser = 'user';
-const mqttPassword = 'password';
+const mqttHost = typeof process.env.HOSTNAME !== 'undefined' ? process.env.HOSTNAME : 'localhost';
+const mqttUser = typeof process.env.USERNAME !== 'undefined' ? process.env.USERNAME : 'mqtt';
+const mqttPassword = typeof process.env.PASSWORD !== 'undefined' ? process.env.PASSWORD : 'mqtt';
 const mqttTopic = 'ringpatiocam/motion/on';
 
 const mqttClientOptions = {
@@ -105,7 +105,7 @@ const mqttClientOptions = {
     password: mqttPassword
 };
 var mqttConnected = false;
-console.log('connecting to mqtt broker');
+console.log('connecting to mqtt broker. hostname: ' +  mqttHost + ' user: ' + mqttUser + ' password: ****');
 const client  = mqtt.connect('mqtt://'+mqttHost, mqttClientOptions);
 client.on('connect', function () {
     console.log('connected to mqtt broker on ', mqttHost);

@@ -90,6 +90,7 @@ if [ $? -ne 0 ]; then
         --memory-size 128 \
         --role ${AWS_LAMBDA_ROLE} \
         --handler ${lambda_export} \
+        --environment Variables="{HOSTNAME=hostname,USERNAME=username,PASSWORD=password}" \
         --profile ${AWS_PROFILE} >& /tmp/$$.lambda.create
 else
     aws lambda update-function-code \
@@ -102,6 +103,7 @@ fi
 # check for error
 if [ $? -ne 0 ]; then
     echo "unable to create/update lambda"
+    cat /tmp/$$.lambda.*
     rm -rf /tmp/$$.*
     exit 4
 fi
