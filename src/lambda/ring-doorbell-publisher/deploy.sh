@@ -1,8 +1,14 @@
 #!/bin/sh
 
-AWS_PROFILE="smoghal-iot"
-AWS_REGION="us-east-1"
-AWS_LAMBDA_ROLE="arn:aws:iam::200323725246:role/lambda_execution_role"
+## initialize and do some pre-flight checks
+if [ -z "$AWS_PROFILE" -o -z "$AWS_REGION" -o -z "$AWS_LAMBDA_ROLE_ARN" ]; then
+    echo "Missing environment variables.  Ensure following environment variables are set"
+    echo "  AWS_PROFILE"
+    echo "  AWS_REGION"
+    echo "  AWS_LAMBDA_ROLE_ARN"
+    exit 1
+fi
+
 
 ## DO NOT MODIFY
 sources="node_modules cert index.js package.json"
@@ -93,7 +99,7 @@ if [ $? -ne 0 ]; then
         --timeout 30 \
         --memory-size 128 \
         --environment Variables={SHARED_KEY=${shared_key}} \
-        --role ${AWS_LAMBDA_ROLE} \
+        --role ${AWS_LAMBDA_ROLE_ARN} \
         --handler ${lambda_export} \
         --profile ${AWS_PROFILE} >& /tmp/$$.lambda.create
     echo "shared key is: ${shared_key}"
